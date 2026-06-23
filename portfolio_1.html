@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Портфолио — Видеомонтаж</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0A0F;
+    --surface: #13131A;
+    --surface2: #1C1C26;
+    --border: rgba(255,255,255,0.07);
+    --text: #F0EDE8;
+    --muted: #8A8799;
+    --accent: #7B5CF0;
+    --accent-glow: rgba(123,92,240,0.35);
+    --gold: #C9A84C;
+    --gold-dim: rgba(201,168,76,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #fff !important;
+    padding: 10px 22px;
+    border-radius: 8px;
+    transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(123,92,240,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 32px;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-desc {
+    max-width: 560px;
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+  .hero-desc strong { color: var(--text); font-weight: 500; }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 15px 32px;
+    border-radius: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px var(--accent-glow);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    padding: 15px 32px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    background: rgba(123,92,240,0.08);
+  }
+
+  .hero-stats {
+    margin-top: 80px;
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.3px;
+  }
+
+  /* ─── SECTION ─── */
+  section { padding: 100px 48px; }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 520px;
+    font-weight: 300;
+    margin-bottom: 56px;
+  }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--surface); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--surface2);
+    padding: 40px 36px;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-card:hover { background: #21212E; }
+
+  .service-icon {
+    width: 48px; height: 48px;
+    background: var(--gold-dim);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 22px;
+  }
+
+  .service-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ─── PORTFOLIO ─── */
+  #portfolio {}
+
+  .filter-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .tab-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .tab-btn:hover { border-color: var(--accent); color: var(--text); }
+  .tab-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .video-card {
+    background: var(--surface);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px var(--accent);
+  }
+
+  .video-thumb {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #1a1a24;
+  }
+  .video-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .video-card:hover .video-thumb img { transform: scale(1.05); }
+
+  .play-btn {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.3);
+    transition: background 0.2s;
+  }
+  .video-card:hover .play-btn { background: rgba(123,92,240,0.3); }
+  .play-btn svg {
+    width: 52px; height: 52px;
+    filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+    transition: transform 0.2s;
+  }
+  .video-card:hover .play-btn svg { transform: scale(1.1); }
+
+  .video-tag {
+    position: absolute;
+    top: 12px; left: 12px;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .tag-long { background: var(--accent); color: #fff; }
+  .tag-short { background: var(--gold); color: #000; }
+  .tag-edit { background: #E040FB; color: #fff; }
+  .tag-cut { background: #00BCD4; color: #000; }
+  .tag-ai { background: linear-gradient(135deg, #00C6FF, #7B5CF0); color: #fff; }
+
+  .tab-ai {
+    background: linear-gradient(135deg, rgba(0,198,255,0.12), rgba(123,92,240,0.12));
+    border-color: rgba(123,92,240,0.4) !important;
+    color: var(--text) !important;
+  }
+  .tab-ai.active {
+    background: linear-gradient(135deg, #00C6FF, #7B5CF0) !important;
+    border-color: transparent !important;
+    color: #fff !important;
+  }
+
+  /* AI Banner */
+  .ai-banner {
+    margin-top: 48px;
+    background: linear-gradient(135deg, rgba(0,198,255,0.08), rgba(123,92,240,0.12));
+    border: 1px solid rgba(123,92,240,0.3);
+    border-radius: 16px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .ai-banner-icon { font-size: 36px; flex-shrink: 0; }
+  .ai-banner-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+  .ai-banner-desc { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+  /* AI Services */
+  #ai-services { background: var(--bg); }
+  #ai-services .section-title em { font-style: normal; }
+
+  .ai-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .ai-service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .ai-service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00C6FF, #7B5CF0);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .ai-service-card:hover { border-color: rgba(123,92,240,0.4); transform: translateY(-3px); }
+  .ai-service-card:hover::before { opacity: 1; }
+
+  .ai-service-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 16px;
+    letter-spacing: -2px;
+  }
+  .ai-service-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+  .ai-service-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .ai-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .ai-tags span {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, rgba(0,198,255,0.12), rgba(123,92,240,0.12));
+    border: 1px solid rgba(123,92,240,0.25);
+    color: #A78BFA;
+  }
+
+  .video-info {
+    padding: 20px;
+  }
+  .video-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+  .video-meta {
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .video-meta span { display: flex; align-items: center; gap: 4px; }
+
+  .video-card.hidden { display: none; }
+
+  /* ─── CHANNELS ─── */
+  #channels { background: var(--surface); }
+
+  .channels-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    margin-bottom: 64px;
+  }
+  @media (max-width: 900px) { .channels-intro { grid-template-columns: 1fr; } }
+
+  .channels-text .section-sub { margin-bottom: 0; }
+
+  .channels-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .badge {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .platform-card {
+    background: var(--surface2);
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .platform-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .platform-card.dzen::before { background: linear-gradient(90deg, #ff6b00, #ffaa00); }
+  .platform-card.youtube::before { background: #FF0000; }
+  .platform-card.vk::before { background: #4680C2; }
+
+  .platform-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .platform-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .platform-icon.dzen { background: #ff6b00; color: #fff; font-size: 16px; }
+  .platform-icon.youtube { background: #FF0000; color: #fff; }
+  .platform-icon.vk { background: #4680C2; color: #fff; }
+
+  .platform-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .platform-handle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .platform-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .pstat { text-align: center; }
+  .pstat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .pstat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.3px; }
+
+  .platform-result {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: rgba(123,92,240,0.08);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .platform-result strong { color: var(--text); }
+
+  .platform-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: opacity 0.2s;
+  }
+  .platform-link:hover { opacity: 0.7; }
+
+  /* ─── PROCESS ─── */
+  #process {}
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    position: relative;
+  }
+
+  .process-step {
+    padding: 36px 32px;
+    border: 1px solid var(--border);
+    margin-right: -1px;
+    position: relative;
+  }
+  .step-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+  }
+  .step-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+  }
+  .step-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ─── CTA ─── */
+  #contact {
+    background: var(--surface);
+    text-align: center;
+    padding: 120px 48px;
+  }
+
+  .cta-wrapper {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .cta-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #4CAF50;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .cta-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+
+  .cta-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 40px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-tg, .btn-vk, .btn-phone {
+    padding: 15px 28px;
+    border-radius: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+  }
+  .btn-tg { background: #229ED9; }
+  .btn-tg:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(34,158,217,0.35); }
+
+  .btn-vk { background: #4680C2; }
+  .btn-vk:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(70,128,194,0.35); }
+
+  .btn-phone { background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+  .btn-phone:hover { transform: translateY(-2px); border-color: var(--accent); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 40px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--accent); }
+  footer p { font-size: 13px; color: var(--muted); }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal-box {
+    width: min(900px, 95vw);
+    background: var(--surface);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 50%;
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.2); }
+
+  .modal-video {
+    position: relative;
+    aspect-ratio: 16/9;
+  }
+  .modal-video iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .modal-info {
+    padding: 24px 28px;
+  }
+  .modal-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+  .modal-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-stats { gap: 28px; }
+    footer { padding: 32px 20px; }
+    .channels-intro { gap: 32px; }
+    .process-steps { grid-template-columns: 1fr; }
+    .process-step { margin-right: 0; margin-bottom: -1px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Видео<span>Мастер</span></a>
+  <ul class="nav-links">
+    <li><a href="#portfolio">Работы</a></li>
+    <li><a href="#ai-services">AI / Нейросети</a></li>
+    <li><a href="#channels">Ведение каналов</a></li>
+    <li><a href="#process">Процесс</a></li>
+    <li><a href="#contact" class="nav-cta">Написать</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Видеомонтаж · Длинный и короткий формат</p>
+  <h1 class="hero-title">
+    Монтирую<br>
+    <em>видео, которое</em>
+    продаёт
+  </h1>
+  <p class="hero-desc">
+    Специализируюсь на монтаже для <strong>YouTube, VK Видео и Дзен</strong>. Длинные обзоры, короткие ролики, эдиты — работаю с нишей «ткани и рукоделие», знаю аудиторию изнутри.
+  </p>
+  <div class="hero-actions">
+    <a href="#portfolio" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Смотреть работы
+    </a>
+    <a href="#contact" class="btn-secondary">Обсудить проект</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">18<span>k+</span></div>
+      <div class="stat-label">Просмотров на лучшем ролике</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Платформы одновременно</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">18+</div>
+      <div class="stat-label">Видео в портфолио</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2<span>k+</span></div>
+      <div class="stat-label">Суммарно подписчиков</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-eyebrow">Что я делаю</p>
+  <h2 class="section-title">Форматы работы</h2>
+  <p class="section-sub">Берусь за монтаж под любую платформу — от длинных разборов до вертикальных клипов</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🎬</div>
+      <h3 class="service-title">Длинный формат</h3>
+      <p class="service-desc">Монтаж роликов 5–15 минут: обзоры, разборы, обучение. Динамика, текстовые вставки, цветокоррекция, музыка.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3 class="service-title">Shorts / Reels</h3>
+      <p class="service-desc">Короткие вертикальные ролики для YouTube Shorts, VK Клипов. Крючок с первых секунд, жёсткий ритм монтажа.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <h3 class="service-title">Эдиты</h3>
+      <p class="service-desc">Атмосферные монтажные нарезки под музыку. Переходы, визуальный стиль, синхрон с битом.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📡</div>
+      <h3 class="service-title">Ведение канала</h3>
+      <p class="service-desc">Полный цикл: стратегия контента, публикация, обложки, описания, аналитика по просмотрам.</p>
+    </div>
+    <div class="service-card" style="border: 1px solid rgba(123,92,240,0.35); background: linear-gradient(135deg, rgba(0,198,255,0.04), rgba(123,92,240,0.07));">
+      <div class="service-icon" style="background: linear-gradient(135deg, rgba(0,198,255,0.18), rgba(123,92,240,0.22));">🤖</div>
+      <h3 class="service-title">AI-контент</h3>
+      <p class="service-desc">Генерация видео нейросетями: Runway, Kling, Sora. Контент без съёмки — быстро и в масштабе. <a href="#ai-services" style="color: var(--accent); font-weight: 600; text-decoration: none;">Отдельная услуга →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <p class="section-eyebrow">Портфолио</p>
+  <h2 class="section-title">Работы</h2>
+  <p class="section-sub">Нажмите на карточку, чтобы посмотреть видео прямо здесь</p>
+
+  <div class="filter-tabs">
+    <button class="tab-btn active" onclick="filterVideos('all', this)">Все работы</button>
+    <button class="tab-btn" onclick="filterVideos('long', this)">Длинный формат</button>
+    <button class="tab-btn" onclick="filterVideos('short', this)">Shorts / Клипы</button>
+    <button class="tab-btn" onclick="filterVideos('edit', this)">Эдиты</button>
+    <button class="tab-btn" onclick="filterVideos('cut', this)">Нарезки</button>
+    <button class="tab-btn tab-ai" onclick="filterVideos('ai', this)">🤖 AI / Нейросети</button>
+  </div>
+
+  <div class="videos-grid" id="videosGrid">
+
+    <!-- LONG FORMAT -->
+    <div class="video-card" data-cat="long" onclick="openModal('JmsqEQadaWg', 'Всё о кромке ткани — полный разбор', 'Длинный обзорный ролик о кромке ткани: виды, применение, советы.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/JmsqEQadaWg/maxresdefault.jpg" alt="Кромка ткани" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/>
+            <polygon points="24,18 46,30 24,42" fill="white"/>
+          </svg>
+        </div>
+        <span class="video-tag tag-long">Длинный</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Всё о кромке ткани — полный разбор</h3>
+        <div class="video-meta">
+          <span>🎬 YouTube</span>
+          <span>Длинный формат</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="long" onclick="openModal('0-yzk85bkAk', 'Разбор ткани — длинное видео', 'Детальный разбор характеристик ткани для новичков и опытных швей.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/0-yzk85bkAk/maxresdefault.jpg" alt="Ткань разбор" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-long">Длинный</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Разбор ткани — длинное видео</h3>
+        <div class="video-meta"><span>🎬 YouTube</span><span>Длинный формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="long" onclick="openModal('v_esCQFLbCs', 'Кромка ткани — часть 2', 'Продолжение серии о кромке ткани с углублённым разбором.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/v_esCQFLbCs/maxresdefault.jpg" alt="Кромка 2" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-long">Длинный</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Кромка ткани — часть 2</h3>
+        <div class="video-meta"><span>🎬 YouTube</span><span>Длинный формат</span></div>
+      </div>
+    </div>
+
+    <!-- SHORT FORMAT -->
+    <div class="video-card" data-cat="short" onclick="openModal('RFNRdiOMxtk', 'Короткий ролик о ткани #1', 'Динамичный Shorts-формат про ткань.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/RFNRdiOMxtk/maxresdefault.jpg" alt="Short 1" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-short">Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Короткий ролик о ткани #1</h3>
+        <div class="video-meta"><span>⚡ Shorts</span><span>Короткий формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="short" onclick="openModal('LL6mcktfw8U', 'Короткий ролик о ткани #2', 'Короткий вертикальный ролик про ткань.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/LL6mcktfw8U/maxresdefault.jpg" alt="Short 2" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-short">Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Короткий ролик о ткани #2</h3>
+        <div class="video-meta"><span>⚡ Shorts</span><span>Короткий формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="short" onclick="openModal('gdTMBmyuCuc', 'Короткий ролик о ткани #3', 'Shorts о тканях.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/gdTMBmyuCuc/maxresdefault.jpg" alt="Short 3" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-short">Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Короткий ролик о ткани #3</h3>
+        <div class="video-meta"><span>⚡ Shorts</span><span>Короткий формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="short" onclick="openModal('9frSd2kG51g', 'Короткий ролик о ткани #4', 'Shorts о тканях.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/9frSd2kG51g/maxresdefault.jpg" alt="Short 4" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-short">Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Короткий ролик о ткани #4</h3>
+        <div class="video-meta"><span>⚡ Shorts</span><span>Короткий формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="short" onclick="openModal('aZ23PH74AvA', 'Короткий ролик о ткани #5', 'Shorts о тканях.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/aZ23PH74AvA/maxresdefault.jpg" alt="Short 5" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-short">Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Короткий ролик о ткани #5</h3>
+        <div class="video-meta"><span>⚡ Shorts</span><span>Короткий формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="short" onclick="openModal('Tra09aJE57k', 'Короткий ролик о ткани #6', 'Shorts о тканях.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/Tra09aJE57k/maxresdefault.jpg" alt="Short 6" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-short">Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Короткий ролик о ткани #6</h3>
+        <div class="video-meta"><span>⚡ Shorts</span><span>Короткий формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="short" onclick="openModal('8ftlyBkHcJE', 'Ролик на иностранном языке', 'Короткий формат на иностранном языке.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/8ftlyBkHcJE/maxresdefault.jpg" alt="Foreign" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-short">Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Ролик на иностранном языке</h3>
+        <div class="video-meta"><span>⚡ Shorts</span><span>Мультиязычный</span></div>
+      </div>
+    </div>
+
+    <!-- EDITS -->
+    <div class="video-card" data-cat="edit" onclick="openModal('JMf9Qwx_Tks', 'Эдит #1', 'Атмосферная монтажная нарезка под музыку.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/JMf9Qwx_Tks/maxresdefault.jpg" alt="Edit 1" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-edit">Эдит</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Эдит #1</h3>
+        <div class="video-meta"><span>🎨 Edit</span><span>Атмосферный монтаж</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="edit" onclick="openModal('9cJLk3fP3NE', 'Эдит #2', 'Атмосферная монтажная нарезка под музыку.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/9cJLk3fP3NE/maxresdefault.jpg" alt="Edit 2" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-edit">Эдит</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Эдит #2</h3>
+        <div class="video-meta"><span>🎨 Edit</span><span>Атмосферный монтаж</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="edit" onclick="openModal('6DfYG5JhLWE', 'Эдит #3', 'Атмосферная монтажная нарезка под музыку.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/6DfYG5JhLWE/maxresdefault.jpg" alt="Edit 3" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-edit">Эдит</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Эдит #3</h3>
+        <div class="video-meta"><span>🎨 Edit</span><span>Атмосферный монтаж</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="edit" onclick="openModal('yB4fn8BAYa8', 'Эдит #4', 'Атмосферная монтажная нарезка под музыку.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/yB4fn8BAYa8/maxresdefault.jpg" alt="Edit 4" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-edit">Эдит</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Эдит #4</h3>
+        <div class="video-meta"><span>🎨 Edit</span><span>Атмосферный монтаж</span></div>
+      </div>
+    </div>
+
+    <!-- CUTS -->
+    <div class="video-card" data-cat="cut" onclick="openModal('kFEPYejD594', 'Нарезка из фильма #1', 'Нарезка лучших моментов из фильма.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/kFEPYejD594/maxresdefault.jpg" alt="Cut 1" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-cut">Нарезка</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Нарезка из фильма #1</h3>
+        <div class="video-meta"><span>✂️ Нарезка</span><span>Лучшие моменты</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="cut" onclick="openModal('QS8tHi336JU', 'Нарезка из фильма #2', 'Нарезка лучших моментов из фильма.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/QS8tHi336JU/maxresdefault.jpg" alt="Cut 2" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-cut">Нарезка</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Нарезка из фильма #2</h3>
+        <div class="video-meta"><span>✂️ Нарезка</span><span>Лучшие моменты</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="cut" onclick="openModal('iZNpDS93sho', 'Нарезка из фильма #3', 'Нарезка лучших моментов из фильма.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/iZNpDS93sho/maxresdefault.jpg" alt="Cut 3" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-cut">Нарезка</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Нарезка из фильма #3</h3>
+        <div class="video-meta"><span>✂️ Нарезка</span><span>Лучшие моменты</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="cut" onclick="openModal('aufMFPq9Bck', 'Нарезка из фильма #4', 'Нарезка лучших моментов из фильма.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/aufMFPq9Bck/maxresdefault.jpg" alt="Cut 4" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-cut">Нарезка</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Нарезка из фильма #4</h3>
+        <div class="video-meta"><span>✂️ Нарезка</span><span>Лучшие моменты</span></div>
+      </div>
+    </div>
+
+    <!-- AI / НЕЙРОСЕТИ -->
+    <div class="video-card" data-cat="ai" onclick="openModal('Ggp9ZWCRCcU', 'Длинное видео: монтаж + нейросети', 'Полноценный длинный ролик, созданный с применением нейросетей для генерации и обработки контента. Монтаж + AI.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/Ggp9ZWCRCcU/maxresdefault.jpg" alt="AI Long" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-ai">AI + Монтаж</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">Монтаж + нейросети — длинный формат</h3>
+        <div class="video-meta"><span>🤖 AI</span><span>Длинный формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="ai" onclick="openModal('bjgVo38hdO8', 'AI Short #1', 'Короткий ролик, полностью сгенерированный нейросетью.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/bjgVo38hdO8/maxresdefault.jpg" alt="AI Short 1" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-ai">AI Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">AI Short #1 — генерация нейросетью</h3>
+        <div class="video-meta"><span>🤖 AI</span><span>Short-формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="ai" onclick="openModal('4Gg_BmMmYLU', 'AI Short #2', 'Короткий ролик, полностью сгенерированный нейросетью.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/4Gg_BmMmYLU/maxresdefault.jpg" alt="AI Short 2" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-ai">AI Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">AI Short #2 — генерация нейросетью</h3>
+        <div class="video-meta"><span>🤖 AI</span><span>Short-формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="ai" onclick="openModal('wL0L5ZpxVeM', 'AI Short #3', 'Короткий ролик, полностью сгенерированный нейросетью.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/wL0L5ZpxVeM/maxresdefault.jpg" alt="AI Short 3" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-ai">AI Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">AI Short #3 — генерация нейросетью</h3>
+        <div class="video-meta"><span>🤖 AI</span><span>Short-формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="ai" onclick="openModal('JqwvrkQMeVw', 'AI Short #4', 'Короткий ролик, полностью сгенерированный нейросетью.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/JqwvrkQMeVw/maxresdefault.jpg" alt="AI Short 4" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-ai">AI Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">AI Short #4 — генерация нейросетью</h3>
+        <div class="video-meta"><span>🤖 AI</span><span>Short-формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="ai" onclick="openModal('MTVhcpXW3WI', 'AI Short #5', 'Короткий ролик, полностью сгенерированный нейросетью.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/MTVhcpXW3WI/maxresdefault.jpg" alt="AI Short 5" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-ai">AI Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">AI Short #5 — генерация нейросетью</h3>
+        <div class="video-meta"><span>🤖 AI</span><span>Short-формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="ai" onclick="openModal('LIXoDtG_PQc', 'AI Short #6', 'Короткий ролик, полностью сгенерированный нейросетью.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/LIXoDtG_PQc/maxresdefault.jpg" alt="AI Short 6" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-ai">AI Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">AI Short #6 — генерация нейросетью</h3>
+        <div class="video-meta"><span>🤖 AI</span><span>Short-формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="ai" onclick="openModal('Gfe1zanCmnM', 'AI Short #7', 'Короткий ролик, полностью сгенерированный нейросетью.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/Gfe1zanCmnM/maxresdefault.jpg" alt="AI Short 7" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-ai">AI Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">AI Short #7 — генерация нейросетью</h3>
+        <div class="video-meta"><span>🤖 AI</span><span>Short-формат</span></div>
+      </div>
+    </div>
+
+    <div class="video-card" data-cat="ai" onclick="openModal('1KRihd1lUeg', 'AI Short #8', 'Короткий ролик, полностью сгенерированный нейросетью.')">
+      <div class="video-thumb">
+        <img src="https://img.youtube.com/vi/1KRihd1lUeg/maxresdefault.jpg" alt="AI Short 8" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="24,18 46,30 24,42" fill="white"/></svg>
+        </div>
+        <span class="video-tag tag-ai">AI Short</span>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">AI Short #8 — генерация нейросетью</h3>
+        <div class="video-meta"><span>🤖 AI</span><span>Short-формат</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AI BANNER -->
+  <div class="ai-banner">
+    <div class="ai-banner-icon">🤖</div>
+    <div>
+      <div class="ai-banner-title">Работа с нейросетями — отдельная услуга</div>
+      <div class="ai-banner-desc">Генерирую видеоконтент с помощью AI-инструментов: Runway, Kling, Sora и других. Подходит для брендов, блогеров и автоматизации контента.</div>
+    </div>
+    <a href="#ai-services" class="btn-primary" style="white-space: nowrap; flex-shrink: 0;">Подробнее →</a>
+  </div>
+</section>
+
+<!-- AI SERVICES -->
+<section id="ai-services">
+  <p class="section-eyebrow">Отдельная услуга</p>
+  <h2 class="section-title">AI-контент<br><em style="font-style:normal; color: var(--accent);">нейросети</em></h2>
+  <p class="section-sub">Создаю видеоконтент с нуля с помощью нейросетей — без съёмки, без оборудования, быстро и в масштабе</p>
+
+  <div class="ai-services-grid">
+    <div class="ai-service-card">
+      <div class="ai-service-num">01</div>
+      <h3 class="ai-service-title">AI Shorts / Reels</h3>
+      <p class="ai-service-desc">Полностью сгенерированные короткие ролики: визуал от нейросети, монтаж, субтитры, музыка. Готово к публикации.</p>
+      <div class="ai-tags">
+        <span>Runway</span><span>Kling</span><span>Sora</span><span>Pika</span>
+      </div>
+    </div>
+    <div class="ai-service-card">
+      <div class="ai-service-num">02</div>
+      <h3 class="ai-service-title">Длинный AI-формат</h3>
+      <p class="ai-service-desc">Монтаж с AI-элементами: сгенерированные вставки, B-roll от нейросети, визуальные эффекты. Гибрид реального и AI-контента.</p>
+      <div class="ai-tags">
+        <span>Монтаж</span><span>AI B-roll</span><span>Эффекты</span>
+      </div>
+    </div>
+    <div class="ai-service-card">
+      <div class="ai-service-num">03</div>
+      <h3 class="ai-service-title">Массовая генерация</h3>
+      <p class="ai-service-desc">Серия роликов по шаблону — для каналов, которым нужен постоянный поток контента без съёмочного процесса.</p>
+      <div class="ai-tags">
+        <span>Серии</span><span>Автоматизация</span><span>Шаблоны</span>
+      </div>
+    </div>
+    <div class="ai-service-card">
+      <div class="ai-service-num">04</div>
+      <h3 class="ai-service-title">Консультация по AI</h3>
+      <p class="ai-service-desc">Расскажу, какие инструменты подойдут для вашей ниши, как встроить AI в производство контента и сэкономить бюджет.</p>
+      <div class="ai-tags">
+        <span>Стратегия</span><span>Инструменты</span><span>Внедрение</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANNELS -->
+<section id="channels">
+  <div class="channels-intro">
+    <div class="channels-text">
+      <p class="section-eyebrow">Ведение каналов</p>
+      <h2 class="section-title">Знаю, как<br>растить канал</h2>
+      <p class="section-sub">Самостоятельно вёл канал «Лоскут для всех» на трёх платформах одновременно — от создания контент-плана до публикации и аналитики.</p>
+      <div class="channels-badges">
+        <span class="badge">📋 Контент-план</span>
+        <span class="badge">🖼 Обложки</span>
+        <span class="badge">📊 Аналитика</span>
+        <span class="badge">🔄 Кросс-постинг</span>
+        <span class="badge">📝 Описания и теги</span>
+      </div>
+    </div>
+    <div style="background: var(--surface2); border-radius: 16px; padding: 28px; border: 1px solid var(--border);">
+      <div style="font-size: 13px; color: var(--muted); margin-bottom: 16px; letter-spacing: 0.5px;">ЛУЧШИЙ РЕЗУЛЬТАТ</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 700; letter-spacing: -2px; color: var(--text); line-height: 1;">18,6<span style="color: var(--accent);">k</span></div>
+      <div style="font-size: 15px; color: var(--muted); margin-top: 8px; margin-bottom: 24px;">просмотров на одном ролике</div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: space-between; padding: 12px 16px; background: var(--surface); border-radius: 8px;">
+          <span style="font-size: 13px; color: var(--muted);">Дзен — лучший ролик</span>
+          <span style="font-size: 13px; font-weight: 600; color: var(--text);">18,6k</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 12px 16px; background: var(--surface); border-radius: 8px;">
+          <span style="font-size: 13px; color: var(--muted);">VK Видео — лучший ролик</span>
+          <span style="font-size: 13px; font-weight: 600; color: var(--text);">19,4k</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 12px 16px; background: var(--surface); border-radius: 8px;">
+          <span style="font-size: 13px; color: var(--muted);">YouTube — лучший ролик</span>
+          <span style="font-size: 13px; font-weight: 600; color: var(--text);">7,4k</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="platforms-grid">
+    <div class="platform-card dzen">
+      <div class="platform-header">
+        <div class="platform-icon dzen">Д</div>
+        <div>
+          <div class="platform-name">Яндекс Дзен</div>
+          <div class="platform-handle">Лоскут для Всех</div>
+        </div>
+      </div>
+      <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Статьи и видео о тканях — виды, обзоры, советы по пошиву. Визуальный стиль, заголовки под алгоритм Дзена.</p>
+      <div class="platform-stats">
+        <div class="pstat">
+          <div class="pstat-num">592</div>
+          <div class="pstat-label">Подписчика</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">18,6k</div>
+          <div class="pstat-label">Топ просмотров</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">4+</div>
+          <div class="pstat-label">Роликов</div>
+        </div>
+      </div>
+      <div class="platform-result">
+        Ролик <strong>«Виды футера»</strong> набрал 18 600 просмотров — органическая выдача Дзена без рекламы
+      </div>
+      <a href="https://dzen.ru/id/67d7b57c92a83d189d6ab47f?tab=longs" target="_blank" class="platform-link">Открыть канал →</a>
+    </div>
+
+    <div class="platform-card youtube">
+      <div class="platform-header">
+        <div class="platform-icon youtube">▶</div>
+        <div>
+          <div class="platform-name">YouTube</div>
+          <div class="platform-handle">@Aflapforeveryone · 787 подписчиков</div>
+        </div>
+      </div>
+      <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Длинные обзоры, Shorts и эдиты. 93 видео, кросс-платформенная стратегия.</p>
+      <div class="platform-stats">
+        <div class="pstat">
+          <div class="pstat-num">787</div>
+          <div class="pstat-label">Подписчика</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">7,4k</div>
+          <div class="pstat-label">Топ просмотров</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">93</div>
+          <div class="pstat-label">Видео</div>
+        </div>
+      </div>
+      <div class="platform-result">
+        <strong>«Честный обзор лоскута по 120₽/кг»</strong> — 7 400 просмотров. Продающий заголовок + сильный крючок.
+      </div>
+      <a href="https://www.youtube.com/@Aflapforeveryone" target="_blank" class="platform-link">Открыть канал →</a>
+    </div>
+
+    <div class="platform-card vk">
+      <div class="platform-header">
+        <div class="platform-icon vk">VK</div>
+        <div>
+          <div class="platform-name">VK Видео</div>
+          <div class="platform-handle">Лоскут для всех · 1 700 подписчиков</div>
+        </div>
+      </div>
+      <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Наибольшая аудитория среди трёх платформ. 72 видео, топовый ролик — почти 20k просмотров.</p>
+      <div class="platform-stats">
+        <div class="pstat">
+          <div class="pstat-num">1,7k</div>
+          <div class="pstat-label">Подписчика</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">19,4k</div>
+          <div class="pstat-label">Топ просмотров</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-num">72</div>
+          <div class="pstat-label">Видео</div>
+        </div>
+      </div>
+      <div class="platform-result">
+        <strong>«Эксперимент: стоит ли брать лоскут за 90₽?»</strong> — 19 400 просмотров. Лидер по охватам.
+      </div>
+      <a href="https://vkvideo.ru/@flapok/all" target="_blank" class="platform-link">Открыть канал →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <p class="section-eyebrow">Как я работаю</p>
+  <h2 class="section-title">Процесс</h2>
+  <p class="section-sub">Чётко, без лишних согласований, с результатом в срок</p>
+
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-number">01</div>
+      <h3 class="step-title">Бриф</h3>
+      <p class="step-desc">Вы присылаете исходники и рассказываете о задаче: платформа, тон, референсы. Я задаю точечные вопросы.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">02</div>
+      <h3 class="step-title">Монтаж</h3>
+      <p class="step-desc">Структура, ритм, цветокоррекция, музыка, субтитры — работаю по согласованному плану без лишних итераций.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">03</div>
+      <h3 class="step-title">Правки</h3>
+      <p class="step-desc">Отправляю черновик. До 2 раундов правок включено в стоимость. Быстро реагирую.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">04</div>
+      <h3 class="step-title">Готово</h3>
+      <p class="step-desc">Финальный файл в нужном формате под вашу платформу. Готов к загрузке сразу.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact">
+  <div class="cta-wrapper">
+    <div class="cta-badge">Открыт к новым проектам</div>
+    <h2 class="cta-title">Готов взяться<br>за ваш проект</h2>
+    <p class="cta-sub">Напишите в Telegram — расскажите про задачу, и я отвечу в течение нескольких часов. Сориентирую по срокам и стоимости.</p>
+    <div class="cta-actions">
+      <a href="https://t.me/Denley_888" target="_blank" class="btn-tg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.078 9.791c-.155.703-.568.875-1.154.543l-3.188-2.35-1.537 1.48c-.17.17-.312.312-.64.312l.228-3.236 5.89-5.318c.256-.228-.055-.355-.397-.127L7.03 14.488 3.895 13.49c-.694-.216-.708-.694.145-.028l10.52-4.059c.577-.21 1.082.136.902 1.645z"/></svg>
+        Telegram
+      </a>
+      <a href="https://vk.com/gorchakovdenis" target="_blank" class="btn-vk">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.525-2.049-1.714-1.032-1.003-1.49-.994-1.744-.994-.356 0-.458.102-.458.593v1.565c0 .424-.135.677-1.253.677-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.864 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.169.508.271.508.22 0 .407-.136.813-.542 1.253-1.406 2.151-3.574 2.151-3.574.119-.254.322-.491.762-.491h1.744c.525 0 .643.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .779.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.049.17.474-.085.711-.609.711z"/></svg>
+        ВКонтакте
+      </a>
+      <a href="tel:+79106688045" class="btn-phone">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +7 910 668 80 45
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">Видео<span>Мастер</span></a>
+  <div style="display:flex; gap: 24px; flex-wrap: wrap; align-items: center;">
+    <a href="https://t.me/Denley_888" target="_blank" style="color: var(--muted); font-size: 13px; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#229ED9'" onmouseout="this.style.color='var(--muted)'">Telegram</a>
+    <a href="https://vk.com/gorchakovdenis" target="_blank" style="color: var(--muted); font-size: 13px; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#4680C2'" onmouseout="this.style.color='var(--muted)'">ВКонтакте</a>
+    <a href="tel:+79106688045" style="color: var(--muted); font-size: 13px; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">+7 910 668 80 45</a>
+  </div>
+  <p style="font-size: 12px; color: var(--muted);">2024 — все работы в портфолио</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOnOverlay(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-video">
+      <iframe id="modalIframe" src="" allowfullscreen allow="autoplay"></iframe>
+    </div>
+    <div class="modal-info">
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <p class="modal-desc" id="modalDesc"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function filterVideos(cat, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.video-card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+
+  function openModal(videoId, title, desc) {
+    document.getElementById('modalIframe').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalDesc').textContent = desc;
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.getElementById('modalIframe').src = '';
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
