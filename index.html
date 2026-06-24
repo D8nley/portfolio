@@ -1634,13 +1634,12 @@
     });
   }
 
-  function openModal(videoId, title, desc) {
-    document.getElementById('modalIframe').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    document.getElementById('modalTitle').textContent = title;
-    document.getElementById('modalDesc').textContent = desc;
-    document.getElementById('modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+function openModal(videoId, title, desc) {
+  window.open(
+    `https://www.youtube.com/watch?v=${videoId}`,
+    '_blank'
+  );
+}
 
   function closeModal() {
     document.getElementById('modal').classList.remove('open');
